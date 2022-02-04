@@ -1,6 +1,8 @@
 package model;
 
-public class Paladin extends Personnage{
+import com.example.duel.model.Personnage;
+
+public class Paladin extends Personnage {
 
     public Paladin(String pseudo) {
         super(pseudo, 200, 100, 80,"Gaillard toujours prêt à servir.\n200 de vie,100 de defense,20 d'attaque","paladin.png");

@@ -2,7 +2,6 @@ package com.example.duel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -18,18 +17,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acceuil);
+        setContentView(R.layout.accueil);
 
         Button nPartie = findViewById(R.id.nPartie);
         Button continuer = findViewById(R.id.continuer);
         Button exit = findViewById(R.id.exit);
 
-        nPartie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent choixPerso = new Intent(MainActivity.this, Choixperso.class);
-                startActivity(choixPerso);
-            }
+        nPartie.setOnClickListener(view -> {
+            Intent choixPerso = new Intent(MainActivity.this, Choixperso.class);
+            startActivity(choixPerso);
         });
     }
 }

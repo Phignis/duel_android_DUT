@@ -2,18 +2,16 @@ package com.example.duel.model;
 
 public abstract class Personnage {
 
-    private StringProperty pseudo;
-    private IntegerProperty vie;
+    private String pseudo;
+    private int vie;
     private int def;
     private int attaque;
     private String description;
     private String image;
 
     public Personnage(String pseudo, int vie, int def, int attaque, String description,String photo) {
-        this.pseudo = new SimpleStringProperty();
-        this.pseudo.setValue(pseudo);
-        this.vie = new SimpleIntegerProperty();
-        this.vie.setValue(vie);
+        this.pseudo = pseudo;
+        this.vie = vie;
         this.def = def;
         this.attaque = attaque;
         this.description = description;
@@ -103,18 +101,18 @@ public abstract class Personnage {
         return description;
     }
     public String getImage(){return image;}
-    public String getPseudo(){return pseudo.getValue();}
-    public StringProperty getPseudoP(){return this.pseudo;}
+    public String getPseudo(){return pseudo;}
+    public String getPseudoP(){return this.pseudo;}
 
     public int getVie(){
-        return this.vie.getValue();
+        return this.vie;
     }
 
     /**
      * On final pour ne pas laisser la possibiliter de surcharger
      * @return IntegerProperty : sert a bind dessus
      */
-    public final IntegerProperty getVieInteger(){return this.vie;}
-    public void setVie(int vie) {this.vie.setValue(vie);}
+    public final int getVieInteger(){return this.vie;}
+    public void setVie(int vie) {this.vie = vie;}
     public void reset(){ System.out.println("je peux rien faire");}
 }

@@ -1,7 +1,9 @@
 package model;
+import com.example.duel.model.Personnage;
+
 import java.util.Random;
 
-public class Voleur extends Personnage{
+public class Voleur extends Personnage {
 
     private int chance;
     public Voleur(String pseudo) {
