@@ -33,12 +33,15 @@ public class Voleur extends Personnage {
     /**
      *
      * @param min : valeur minimale
-     * @param max : valeur maximale
+     * @param max : valeur maximale (inclusive)
      * @return int : un nombre au hazard
      */
     public int getRand(int min, int max){
         Random r = new Random();
-        return r.ints(min, (max + 1)).findFirst().getAsInt();
+
+        return r.nextInt(max + 1 - min) + min;
+
+        // return r.ints(min, (max + 1)).findFirst().getAsInt();
     }
 
     /**

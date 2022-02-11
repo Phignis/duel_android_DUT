@@ -37,7 +37,7 @@ public abstract class Personnage {
      * utilise pour les dialogues
      * @return : le pseudo suivit d'un tab
      */
-    public String dial(){
+    public String dial() {
         return this.getPseudo()+" : \t";
     }
 
@@ -45,7 +45,7 @@ public abstract class Personnage {
      * Fait parler le parsonnage
      * @param s : message
      */
-    public void parler(String s){
+    public void parler(String s) {
         System.out.println(dial()+s);
     }
 
@@ -53,7 +53,7 @@ public abstract class Personnage {
      * Permet d'ajouter la classe du personnage au dialogue
      * @return
      */
-    public String interpelation(){
+    public String interpelation() {
         return  getClass().getSimpleName() + " "+this.getPseudo();
     }
 
@@ -61,7 +61,7 @@ public abstract class Personnage {
      * Utilise lorsque un personnage en attaque un autre
      * @param p : victime de l'attaque
      */
-    public void Attaquer(Personnage p){
+    public void Attaquer(Personnage p) {
         BaisseDeVie(this.getAttaque(), p);
         AttaquerParole(p);
 
@@ -71,7 +71,7 @@ public abstract class Personnage {
      * Fait une phrase pour dire que le personnage attaque
      * @param p
      */
-    public void AttaquerParole(Personnage p){
+    public void AttaquerParole(Personnage p) {
         System.out.println(dial()+"HAAAA non je t'en supplie "+p.interpelation()+" je n'ai pas appris a me battre !!!");
     }
 
@@ -80,7 +80,7 @@ public abstract class Personnage {
      * @param degats : degats a infliger
      * @param victime : reçoit l'attaque
      */
-    public final void BaisseDeVie(int degats, Personnage victime){
+    public final void BaisseDeVie(int degats, Personnage victime) {
         if (victime.getVie() >= degats){
             victime.setVie(victime.getVie() - degats);
         }else{
@@ -89,22 +89,27 @@ public abstract class Personnage {
     }
 
     /**
-     * A redefinire pour mettre la defence voulu
+     * A redefinir pour mettre la defence voulu
      */
-    public void Defense(){
-        System.out.println("Je me ravitaille");
-    }
+    public abstract void Defense();
+
     public int getAttaque() {
         return this.attaque;
     }
     public String getDescription() {
         return description;
     }
-    public String getImage(){return image;}
-    public String getPseudo(){return pseudo;}
-    public String getPseudoP(){return this.pseudo;}
+    public String getImage() {
+        return image;
+    }
+    public String getPseudo() {
+        return pseudo;
+    }
+    public String getPseudoP() {
+        return this.pseudo;
+    }
 
-    public int getVie(){
+    public int getVie() {
         return this.vie;
     }
 
@@ -112,7 +117,13 @@ public abstract class Personnage {
      * On final pour ne pas laisser la possibiliter de surcharger
      * @return IntegerProperty : sert a bind dessus
      */
-    public final int getVieInteger(){return this.vie;}
-    public void setVie(int vie) {this.vie = vie;}
-    public void reset(){ System.out.println("je peux rien faire");}
+    public final int getVieInteger() {
+        return this.vie;
+    }
+    public void setVie(int vie) {
+        this.vie = vie;
+    }
+    public void reset(){
+        System.out.println("je peux rien faire");
+    }
 }
