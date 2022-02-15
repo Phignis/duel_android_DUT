@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1959773630/src.Duel.iml" filepath="$PROJECT_DIR$/.idea/modules/-1959773630/src.Duel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1472454444/src.Duel.app.iml" filepath="$PROJECT_DIR$/.idea/modules/-1472454444/src.Duel.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-628771273/Duel.iml" filepath="$PROJECT_DIR$/.idea/modules/-628771273/Duel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/400071241/Duel.app.iml" filepath="$PROJECT_DIR$/.idea/modules/400071241/Duel.app.iml" />
     </modules>
   </component>
 </project>
