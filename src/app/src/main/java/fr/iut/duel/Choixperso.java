@@ -56,7 +56,7 @@ public class Choixperso extends AppCompatActivity {
                     perso.setImageResource(R.drawable.paladin);
                     //création du perso ici pour avoir accès a ses différentes information pour les affichers
                     joueur = new Paladin(pseudo.getText().toString());
-                    Log.d("perso", joueur.toString());
+                    //Log.d("perso", joueur.toString());
                     affichageDesc();
                 }
             }
@@ -129,11 +129,12 @@ public class Choixperso extends AppCompatActivity {
      */
     public boolean verificationPseudo(EditText pseudo){
         Log.d("verif", String.valueOf(pseudo.getText()));
-        if(String.valueOf(pseudo.getText()) == "Pseudo") {
-            Log.d("veriff", "false");
+        String s = String.valueOf(pseudo.getText());
+        if(String.valueOf(pseudo.getText()) == s) {
+            Log.d("verifFalse", "false");
             return false;
         }
-        Log.d("verift", "true");
+        Log.d("verifTRUE", "true");
         return true;
     }
 
