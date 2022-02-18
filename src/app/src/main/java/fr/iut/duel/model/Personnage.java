@@ -88,7 +88,6 @@ public abstract class Personnage {
     public void Attaquer(Personnage p) {
         BaisseDeVie(this.getAttaque(), p);
         AttaquerParole(p);
-
     }
 
     /**
