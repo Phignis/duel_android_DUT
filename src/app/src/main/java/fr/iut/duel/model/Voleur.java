@@ -2,57 +2,63 @@ package fr.iut.duel.model;
 
 import java.util.Random;
 
+import fr.iut.duel.util.RandomManager;
+
 public class Voleur extends Personnage {
 
     private int chance;
+    private RandomManager generateurRandom;
+
+    public Voleur(String pseudo, int minRandomLimit, int maxRandomLimit, int chance) {
+        super(pseudo, 100, 20, 80,
+                "Un vil parmis les vils.\n100 de vie,20 de defense,50 d'attaque","voleur.jpg");
+        this.chance = chance;
+        generateurRandom = new RandomManager(minRandomLimit, maxRandomLimit);
+    }
+
+    public Voleur(String pseudo, int minRandomLimit, int maxRandomLimit) {
+        this(pseudo, minRandomLimit, maxRandomLimit, 50);
+    }
+
+    public Voleur(String pseudo, int maxRandomLimit) {
+        this(pseudo, 0, maxRandomLimit);
+    }
+
     public Voleur(String pseudo) {
-        super(pseudo, 100, 20, 80, "Un vil parmis les vils.\n100 de vie,20 de defense,50 d'attaque","voleur.jpg");
-        chance = 50;
+        this(pseudo, 100);
     }
 
     /**
      * Reduit la vie du personnage p
-     * Suivant un nombre au hazard le vole de la vie ou rate
+     * Suivant un nombre au hasard le vole de la vie ou rate
      * @param p : Le personnage adverse
      */
     @Override
     public void AttaquerParole(Personnage p) {
-        int r = getRand(0,100);
-        if(r >chance){
-            parler(p.interpelation()+" voici ma lame rouillé préféré");
+        int r = generateurRandom.generateRandom();
+
+        if(r > chance) {
+            parler(p.interpelation() + " voici ma lame rouillé préféré");
+
             if (getVie() < 100){
-                setVie((getVie()+20)%100);
+                setVie((getVie() + 20) % 100);
                 parler("et voilà mon dut !");
             }
-        }else {
-            parler("mince j'aurais pas du essayer de voler "+p.interpelation()+" en meme temps");
+        } else {
+            parler("mince j'aurais pas du essayer de voler " + p.interpelation() + " en meme temps");
         }
 
-    }
-
-    /**
-     *
-     * @param min : valeur minimale
-     * @param max : valeur maximale (inclusive)
-     * @return int : un nombre au hazard
-     */
-    public int getRand(int min, int max){
-        Random r = new Random();
-
-        return r.nextInt(max + 1 - min) + min;
-
-        // return r.ints(min, (max + 1)).findFirst().getAsInt();
     }
 
     /**
      * La vie remonte sans depasser son maximum de vie
      */
     @Override
-    public void Defense(){
-        if(this.getVie()>80){
+    public void Defense() {
+        if(this.getVie() > 80) {
             this.setVie(100);
         }
-        else{
+        else {
             this.setVie(this.getVie() + 20);
             parler("J'utilise une potion de soin");
         }
@@ -62,7 +68,7 @@ public class Voleur extends Personnage {
      * Reinitialise la vie au maximum
      */
     @Override
-    public void reset(){
+    public void reset() {
         this.setVie(100);
     }
 }

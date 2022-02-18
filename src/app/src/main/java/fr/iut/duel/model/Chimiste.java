@@ -1,9 +1,10 @@
 package fr.iut.duel.model;
 
-public class Chimiste extends Personnage{
+public class Chimiste extends Personnage {
 
     public Chimiste(String pseudo) {
-        super(pseudo, 100, 20, 20,"Prêt à vous preparer des délicieux cocktail.\n100 de vie, 20 de defense, 20 d'attaque","chimiste.jpg");
+        super(pseudo, 100, 20, 20,"Prêt à vous preparer de délicieux cocktail.\n" +
+                "100 de vie, 20 de defense, 20 d'attaque","chimiste.jpg");
     }
 
     /**
@@ -12,15 +13,15 @@ public class Chimiste extends Personnage{
      */
     @Override
     public void AttaquerParole(Personnage p) {
-        parler("Voila un bon poison pour toi "+p.interpelation());
+        parler("Voila un bon poison pour toi " + p.interpelation());
     }
 
     /**
      * La vie remonte sans depasser son maximum de vie
      */
     @Override
-    public void Defense(){
-        if(this.getVie()>80){
+    public void Defense() {
+        if(this.getVie() > 80){
             this.setVie(100);
         }
         else {
@@ -33,7 +34,7 @@ public class Chimiste extends Personnage{
      * Reinitialise la vie au maximum
      */
     @Override
-    public void reset(){
+    public void reset() {
         this.setVie(100);
     }
 }

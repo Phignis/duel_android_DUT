@@ -18,6 +18,30 @@ public abstract class Personnage {
         this.image = photo;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public int getAttaque() {
+        return this.attaque;
+    }
+
+    public int getVie() {
+        return this.vie;
+    }
+
+    public void setVie(int vie) {
+        this.vie = vie;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
     /**
      * Detaille toutes ses statistiques
      * @return String : Une phrase contenant tout
@@ -34,7 +58,7 @@ public abstract class Personnage {
     }
 
     /**
-     * utilise pour les dialogues
+     * utilisé pour les dialogues
      * @return : le pseudo suivit d'un tab
      */
     public String dial() {
@@ -42,11 +66,11 @@ public abstract class Personnage {
     }
 
     /**
-     * Fait parler le parsonnage
+     * Fait parler le personnage
      * @param s : message
      */
     public void parler(String s) {
-        System.out.println(dial()+s);
+        System.out.println(dial() + s);
     }
 
     /**
@@ -54,7 +78,7 @@ public abstract class Personnage {
      * @return
      */
     public String interpelation() {
-        return  getClass().getSimpleName() + " "+this.getPseudo();
+        return  getClass().getSimpleName() + " " + this.getPseudo();
     }
 
     /**
@@ -72,7 +96,8 @@ public abstract class Personnage {
      * @param p
      */
     public void AttaquerParole(Personnage p) {
-        System.out.println(dial()+"HAAAA non je t'en supplie "+p.interpelation()+" je n'ai pas appris a me battre !!!");
+        System.out.println(dial() + "HAAAA non je t'en supplie " +
+                p.interpelation() + " je n'ai pas appris a me battre !!!");
     }
 
     /**
@@ -89,41 +114,11 @@ public abstract class Personnage {
     }
 
     /**
-     * A redefinir pour mettre la defence voulu
+     * A redefinir pour mettre la defense voulue
      */
     public abstract void Defense();
 
-    public int getAttaque() {
-        return this.attaque;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getImage() {
-        return image;
-    }
-    public String getPseudo() {
-        return pseudo;
-    }
-    public String getPseudoP() {
-        return this.pseudo;
-    }
-
-    public int getVie() {
-        return this.vie;
-    }
-
-    /**
-     * On final pour ne pas laisser la possibiliter de surcharger
-     * @return IntegerProperty : sert a bind dessus
-     */
-    public final int getVieInteger() {
-        return this.vie;
-    }
-    public void setVie(int vie) {
-        this.vie = vie;
-    }
-    public void reset(){
-        System.out.println("je peux rien faire");
+    public void reset() {
+        System.out.println("je ne peux rien faire");
     }
 }

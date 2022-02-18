@@ -19,8 +19,8 @@ public class Paladin extends Personnage {
      * La vie remonte sans depasser son maximum de vie
      */
     @Override
-    public void Defense(){
-        if(this.getVie()>180){
+    public void Defense() {
+        if(this.getVie() > 180) {
             this.setVie(200);
         }
         else{
@@ -33,7 +33,7 @@ public class Paladin extends Personnage {
      * Reinitialise la vie au maximum
      */
     @Override
-    public void reset(){
+    public void reset() {
         this.setVie(200);
     }
 }

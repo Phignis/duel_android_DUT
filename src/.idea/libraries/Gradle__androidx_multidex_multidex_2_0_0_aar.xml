@@ -4,6 +4,9 @@
       <root url="jar://$PROJECT_DIR$/../../../../../../../scratch/leruy/.gradle/caches/transforms-3/723c9f927676527d3d716d147ddb67fb/transformed/multidex-2.0.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../../../../../../scratch/leruy/.gradle/caches/transforms-3/723c9f927676527d3d716d147ddb67fb/transformed/multidex-2.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../../../../scratch/leruy/.gradle/caches/transforms-3/723c9f927676527d3d716d147ddb67fb/transformed/multidex-2.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../../scratch/bafoucras/.gradle/caches/transforms-3/723c9f927676527d3d716d147ddb67fb/transformed/multidex-2.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../scratch/bafoucras/.gradle/caches/transforms-3/723c9f927676527d3d716d147ddb67fb/transformed/multidex-2.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../../scratch/bafoucras/.gradle/caches/transforms-3/723c9f927676527d3d716d147ddb67fb/transformed/multidex-2.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

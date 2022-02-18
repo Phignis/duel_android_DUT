@@ -1,6 +1,6 @@
 package fr.iut.duel.model;
 
-public class Magicien extends Personnage{
+public class Magicien extends Personnage {
 
     public Magicien(String pseudo) {
         super(pseudo, 100, 20, 30,"Abracadabra.\n100 de vie, 20 de def, 30 d'attaque","mage.png");
@@ -20,8 +20,8 @@ public class Magicien extends Personnage{
      * La vie remonte sans depasser son maximum de vie
      */
     @Override
-    public void Defense(){
-        if(this.getVie()>80){
+    public void Defense() {
+        if(this.getVie() > 80){
             this.setVie(100);
         }
         else {
@@ -34,7 +34,7 @@ public class Magicien extends Personnage{
      * Reinitialise la vie au maximum
      */
     @Override
-    public void reset(){
+    public void reset() {
         this.setVie(100);
     }
 }

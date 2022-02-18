@@ -9,27 +9,69 @@ import java.util.Random;
  * RandomManager code tout avec l'API Java SE 7, pour assurer une compabilité avec la SDK 16 de Android
  */
 public class RandomManager {
+
+    /**
+     * borne minimale de génération du random, incluse
+     * @see RandomManager#generateRandom()
+     */
     private int minLimit;
+
+    /**
+     * borne maximale de génération du random, incluse
+     * @see RandomManager#generateRandom()
+     */
     private int maxLimit;
+
+    /**
+     * noyau de randomisation, servant a générer les nombres aléatoires
+     * @see RandomManager#generateRandom()
+     */
     private Random random;
 
-    public RandomManager(int min_limit, int max_limit) {
-        this.minLimit = min_limit;
-        this.maxLimit = max_limit;
+    /**
+     * créé un RandomManager, pouvant générer des entiers randoms entre les deux bornes en paramètres, incluses
+     * @param minLimit borne minimale de génération du random, incluse
+     * @param maxLimit borne maximale de génération du random, incluse
+     */
+    public RandomManager(int minLimit, int maxLimit) {
+        this.minLimit = minLimit;
+        this.maxLimit = maxLimit;
         random = new Random();
     }
 
-    public RandomManager(int max_limit) {
-        this(-1, max_limit);
+    /**
+     * créé un RandomManager, pouvant générer des entiers randoms entre 0 et une borne maximale, incluse
+     * @param maxLimit borne maximale de génération du random, incluse
+     */
+    public RandomManager(int maxLimit) {
+        this(-1, maxLimit);
+    }
+
+    public int getMinLimit() {
+        return minLimit;
+    }
+
+    public int getMaxLimit() {
+        return maxLimit;
+    }
+
+    public void setMinLimit(int minLimit) {
+        this.minLimit = minLimit;
+    }
+
+    public void setMaxLimit(int maxLimit) {
+        this.maxLimit = maxLimit;
     }
 
     /**
      * génère un entier aléatoire entre la borne minimale si spécifié au constructeur, et la borne maximale (incluse)
+     * Si la borne minimale n'est pas spécifié, la borne minimale est 0
      * @return un entier pseudo aléatoire
      * @see RandomManager#RandomManager(int)
      * @see RandomManager#RandomManager(int, int) 
      */
     public int generateRandom() {
+        // la bound de nextInt est exclue, d'où le + 1
         return random.nextInt(maxLimit + 1 - minLimit) + minLimit;
 
         // return random.ints(minLimit, (maxLimit + 1)).findFirst().getAsInt();
