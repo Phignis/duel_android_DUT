@@ -8,7 +8,7 @@ import fr.iut.duel.model.Personnage;
  */
 public class CombatManager {
     /**
-     * permet de savoir si un personnage est mort ou non, donc possède un montent pv inférieur ou égal à 0
+     * permet de savoir si un personnage est mort ou non, donc possède un montant pv inférieur ou égal à 0
      * @param p personnage dont on souhaite connaitre l'état
      * @return true si le personnage est mort au sens des PV, false sinon
      */
