@@ -13,6 +13,12 @@
             android:name="fr.iut.duel.Choixperso"
             android:exported="true" />
         <activity
+            android:name="fr.iut.duel.ChoixNiveau"
+            android:exported="true" />
+        <activity
+            android:name="fr.iut.duel.Duel"
+            android:exported="true" />
+        <activity
             android:name="fr.iut.duel.MainActivity"
             android:configChanges="orientation"
             android:exported="true">
