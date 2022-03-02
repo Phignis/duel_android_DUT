@@ -1,5 +1,7 @@
 package fr.iut.duel.model;
 
+import com.example.duel.R;
+
 import java.util.Random;
 
 import fr.iut.duel.util.RandomManager;
@@ -11,7 +13,7 @@ public class Voleur extends Personnage {
 
     public Voleur(String pseudo, int minRandomLimit, int maxRandomLimit, int chance) {
         super(pseudo, 100, 20, 80,
-                "Un vil parmis les vils.\n100 de vie,20 de defense,50 d'attaque","voleur.jpg");
+                "Un vil parmis les vils.\n100 de vie,20 de defense,50 d'attaque", R.drawable.voleur);
         this.chance = chance;
         generateurRandom = new RandomManager(minRandomLimit, maxRandomLimit);
     }

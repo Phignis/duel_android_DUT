@@ -18,6 +18,7 @@ import com.example.duel.R;
 
 import java.util.Objects;
 
+import fr.iut.duel.manager.GameManager;
 import fr.iut.duel.model.Chimiste;
 import fr.iut.duel.model.Magicien;
 import fr.iut.duel.model.Personnage;
@@ -40,6 +41,9 @@ public class Choixperso extends AppCompatActivity {
         Button chimiste = findViewById(R.id.chimiste);
         Button voleur = findViewById(R.id.voleur);
 
+        if(infoRenseigne())
+            confirmer();
+
         /**
          * Action du bouton qui clear le texte pre enregistré dans l'editeur de texte
          */
@@ -59,15 +63,14 @@ public class Choixperso extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (jouerRenseigne()){
+                if(infoRenseigne())
                     confirmer();
-                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                infoRenseigne();
-
+                if(infoRenseigne())
+                    confirmer();
             }
         });
         /**
@@ -77,14 +80,13 @@ public class Choixperso extends AppCompatActivity {
         paladin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(verificationPseudo(pseudo)) {
                     ImageView perso = findViewById(R.id.perso);
                     perso.setImageResource(R.drawable.paladin);
                     //création du perso ici pour avoir accès a ses différentes information pour les affichers
                     joueur = new Paladin(pseudo.getText().toString());
                     //Log.d("perso", joueur.toString());
                     affichageDesc();
-                }
+
             }
         });
 
@@ -133,9 +135,11 @@ public class Choixperso extends AppCompatActivity {
     }
 
     /**
-     * Appel la page de choix de niveau
+     * Appel la page de choix de niveau et sauvegarde du personnage
      */
     public void confirmer(){
+        GameManager.getInstance().setJoueur(joueur);
+
         Button confirmation = findViewById(R.id.confirmer);
         confirmation.setOnClickListener(view ->{
             Intent choixNiv = new Intent(Choixperso.this, ChoixNiveau.class);
@@ -147,6 +151,8 @@ public class Choixperso extends AppCompatActivity {
      * Affiche la description du personnage choisit
      */
     public void affichageDesc(){
+        if(infoRenseigne())
+            confirmer();
         TextView description = findViewById(R.id.description);
         description.setTextKeepState(joueur.getDescription());
     }
@@ -158,7 +164,8 @@ public class Choixperso extends AppCompatActivity {
     public boolean pseudoRenseigne(){
         EditText pseudo = findViewById(R.id.pseudo);
         String ps = pseudo.getText().toString();
-        if ( ps != null && ps.length() != 0){
+        if ( ps != null && ps.length() != 0 && !ps.equals("Pseudo")){
+            Log.d("pseudoRenseigne", ps);
             return true;
         }else{
             return false;
@@ -178,50 +185,24 @@ public class Choixperso extends AppCompatActivity {
      * @return
      */
     public boolean infoRenseigne(){
+        String textButton = "Veuillez reseigner ";
+        boolean ps = false, jo = false;
+        Button confirmation = findViewById(R.id.confirmer);
+
         if (!pseudoRenseigne()){
-            // insert un text demandant pseudo
-        }
+            textButton = textButton + ",un pseudo";
+        }else ps = true;
         if (!jouerRenseigne()){
-            // insert un text demandant choisir perso
+            textButton = textButton + ",un personnage";
+        }else jo = true;
+
+        if (jo && ps){
+            confirmation.setText("Confirmer");
+            return true;
         }
+
+        // insert un text demandant choisir perso
+        confirmation.setText(textButton);
         return false;
     }
-
-    /**
-     * Verifie si le pseudo du joueur est renseigne
-     * Il faut renseigne le pseudo avant de choisir un personnage
-     * @return true : si il est renseigne, false : si il n'est pas renseigne
-     */
-    /*
-    public boolean verificationPseudo(EditText pseudo){
-        Log.d("verif", String.valueOf(pseudo.getText()));
-        String s = String.valueOf(pseudo.getText());
-        if(String.valueOf(pseudo.getText()) == s) {
-            Log.d("verifFalse", "false");
-            return false;
-        }
-        Log.d("verifTRUE", "true");
-        return true;
-    }
-*/
-    /**
-     * Verifie si on a choisit un personnage puis le sauvegarde en temps que joueur et charge la page de choix de niveau.
-     * Sinon utilise popUp
-     */
-
-    /*
-    public void valider() {
-        if (Objects.isNull(joueur)){
-            popUp("Veuillez choisir un personnage");
-        }else{
-            GameManager.getInstance().setJoueur(p);
-            GameManager.getInstance().ChoixNiveau();
-        }
-    }
-    */
-
-    /**
-     * Charge la page d'acceuil
-     */
-
 }

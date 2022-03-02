@@ -1,9 +1,11 @@
 package fr.iut.duel.model;
 
+import com.example.duel.R;
+
 public class Magicien extends Personnage {
 
     public Magicien(String pseudo) {
-        super(pseudo, 100, 20, 30,"Abracadabra.\n100 de vie, 20 de def, 30 d'attaque","mage.png");
+        super(pseudo, 100, 20, 30,"Abracadabra.\n100 de vie, 20 de def, 30 d'attaque", R.drawable.mage);
 
     }
 

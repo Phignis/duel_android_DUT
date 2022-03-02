@@ -7,9 +7,9 @@ public abstract class Personnage {
     private int def;
     private int attaque;
     private String description;
-    private String image;
+    private int image;
 
-    public Personnage(String pseudo, int vie, int def, int attaque, String description, String photo) {
+    public Personnage(String pseudo, int vie, int def, int attaque, String description, int photo) {
         this.pseudo = pseudo;
         this.vie = vie;
         this.def = def;
@@ -20,6 +20,9 @@ public abstract class Personnage {
 
     public String getPseudo() {
         return pseudo;
+    }
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public int getAttaque() {
@@ -38,7 +41,7 @@ public abstract class Personnage {
         return description;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 

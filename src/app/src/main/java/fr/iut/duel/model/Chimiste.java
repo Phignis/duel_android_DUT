@@ -1,10 +1,12 @@
 package fr.iut.duel.model;
 
+import com.example.duel.R;
+
 public class Chimiste extends Personnage {
 
     public Chimiste(String pseudo) {
         super(pseudo, 100, 20, 20,"Prêt à vous preparer de délicieux cocktail.\n" +
-                "100 de vie, 20 de defense, 20 d'attaque","chimiste.jpg");
+                "100 de vie, 20 de defense, 20 d'attaque", R.drawable.chimiste);
     }
 
     /**
