@@ -1,6 +1,6 @@
 package fr.iut.duel.model;
 
-public abstract class Personnage {
+public abstract class CharacterPlayable {
 
     private String pseudo;
     private int vie;
@@ -9,7 +9,9 @@ public abstract class Personnage {
     private String description;
     private int image;
 
-    public Personnage(String pseudo, int vie, int def, int attaque, String description, int photo) {
+    private TypeAttack typeAttack = TypeAttack.PHYSIQUE;
+
+    public CharacterPlayable(String pseudo, int vie, int def, int attaque, String description, int photo) {
         this.pseudo = pseudo;
         this.vie = vie;
         this.def = def;
@@ -87,17 +89,27 @@ public abstract class Personnage {
     /**
      * Utilise lorsque un personnage en attaque un autre
      * @param p : victime de l'attaque
+     * @deprecated
+     * @see CharacterPlayable#attack(CharacterPlayable)
      */
-    public void Attaquer(Personnage p) {
+    public void Attaquer(CharacterPlayable p) {
         BaisseDeVie(this.getAttaque(), p);
         AttaquerParole(p);
+    }
+
+    /**
+     * a implémenter, définit comment chaque personnage selon sa classe en attaque un autre
+     * @param target personnage victime de l'attaque
+     */
+    public void attack(CharacterPlayable target) {
+        typeAttack.calculDamage(target.attaque, target.typeAttack);
     }
 
     /**
      * Fait une phrase pour dire que le personnage attaque
      * @param p
      */
-    public void AttaquerParole(Personnage p) {
+    public void AttaquerParole(CharacterPlayable p) {
         System.out.println(dial() + "HAAAA non je t'en supplie " +
                 p.interpelation() + " je n'ai pas appris a me battre !!!");
     }
@@ -107,7 +119,7 @@ public abstract class Personnage {
      * @param degats : degats a infliger
      * @param victime : reçoit l'attaque
      */
-    public final void BaisseDeVie(int degats, Personnage victime) {
+    public final void BaisseDeVie(int degats, CharacterPlayable victime) {
         if (victime.getVie() >= degats){
             victime.setVie(victime.getVie() - degats);
         }else{

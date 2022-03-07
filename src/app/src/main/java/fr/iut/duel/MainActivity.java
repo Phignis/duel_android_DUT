@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.duel.R;
 
 import fr.iut.duel.manager.GameManager;
+import fr.iut.duel.model.CharacterPlayable;
 import fr.iut.duel.model.Paladin;
-import fr.iut.duel.model.Personnage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             continuer.setVisibility(View.GONE);
 
         testrapide.setOnClickListener(view -> {
-            Personnage p = new Paladin("Testeur");
+            CharacterPlayable p = new Paladin("Testeur");
             GameManager.getInstance().setJoueur(p);
             Intent choixNiv = new Intent(MainActivity.this, ChoixNiveauActivity.class);
             startActivity(choixNiv);

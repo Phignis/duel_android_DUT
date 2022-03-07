@@ -19,6 +19,13 @@ public abstract class UniqObservableSubject implements Subject{
      */
     private List<Observer> subscribers;
 
+    /**
+     * Abonne un Observer à cette instance de UniqObservableSubject, pour qu'il reçoive les notifications,
+     * si l'instance n'est pas déjà présente
+     * @see UniqObservableSubject#notifyObservers()
+     * @param toAdd Observer à abonner au Sujet, pour qu'il recoive les notifications
+     * @return true si l'Observer a bien été abonné, false sinon (si null, ou si l'instance est déjà abonnée)
+     */
     @Override
     public boolean subscribe(Observer toAdd) {
         if(toAdd == null) return false;
@@ -30,13 +37,26 @@ public abstract class UniqObservableSubject implements Subject{
         return subscribers.add(toAdd);
     }
 
+    /**
+     * Désabonne un Observer à cette instance de SujetObservableUneFois, pour qu'il ne reçoive plus les notifications
+     * @see UniqObservableSubject#notifyObservers()
+     * @param toRemove Observer a abonner au Sujet, pour qu'il recoive les notifications
+     * @return true si l'Observer a bien été désabonné, false sinon (si l'Observer n'était déjà pas abonné)
+     */
     @Override
     public boolean unsubscribe(Observer toRemove) {
         return subscribers.remove(toRemove);
     }
 
+    /**
+     * Notifie, via la méthode update de Observer, tous les Observateurs abonnés à cette instance, via la méthode attacher
+     * @see Observer#update() 
+     * @see UniqObservableSubject#subscribe(Observer)
+     */
     @Override
     public void notifyObservers() {
-        return;
+        for(Observer toNotify : subscribers) {
+            toNotify.update();
+        }
     }
 }

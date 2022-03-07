@@ -2,7 +2,7 @@ package fr.iut.duel.model;
 
 import com.example.duel.R;
 
-public class Chimiste extends Personnage {
+public class Chimiste extends CharacterPlayable {
 
     public Chimiste(String pseudo) {
         super(pseudo, 100, 20, 20,"Prêt à vous preparer de délicieux cocktail.\n" +
@@ -14,7 +14,7 @@ public class Chimiste extends Personnage {
      * @param p : Le personnage adverse
      */
     @Override
-    public void AttaquerParole(Personnage p) {
+    public void AttaquerParole(CharacterPlayable p) {
         parler("Voila un bon poison pour toi " + p.interpelation());
     }
 

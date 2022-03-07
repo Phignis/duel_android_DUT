@@ -2,7 +2,7 @@ package fr.iut.duel.model;
 
 import com.example.duel.R;
 
-public class Magicien extends Personnage {
+public class Magicien extends CharacterPlayable {
 
     public Magicien(String pseudo) {
         super(pseudo, 100, 20, 30,"Abracadabra.\n100 de vie, 20 de def, 30 d'attaque", R.drawable.mage);
@@ -14,7 +14,7 @@ public class Magicien extends Personnage {
      * @param p : Le personnage adverse
      */
     @Override
-    public void AttaquerParole(Personnage p) {
+    public void AttaquerParole(CharacterPlayable p) {
         parler(p.interpelation()+" tu vas gouter a mon sort le plus puissant");
     }
 

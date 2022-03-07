@@ -56,6 +56,41 @@ public class TickGenerator extends UniqObservableSubject implements Runnable {
         return intervalBetweenTicks;
     }
 
+    /**
+     * Permet d'interrompre le thread interne générant les ticks, via la méthode interrupt
+     * Cette méthode ne devrait jamais renvoyer false.
+     * La fonction réciproque est reprendreGenerateur
+     * @return true si jamais il a été possible d'interrompre le thread interne, false sinon, normalement car le thread interne est initialisé à null
+     * @see Thread#interrupt()
+     * @see TickGenerator#internalThread
+     * @see TickGenerator#reprendreGenerateur()
+     */
+    public boolean interruptTickGeneration() {
+        if(internalThread != null) {
+            internalThread.interrupt();
+            running = false;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Permet de relancer la génération des ticks. On ne relance pas vraiment le thread interne,
+     * mais on lui réattribue un nouveau thread, que l'on relance.
+     * Il interrompt d'abord le thread interne avec interruptTickGeneration(),
+     * afin d'éviter que le thread n'ayant plus de référence soit toujours actif.
+     * @see TickGenerator#internalThread
+     * @see TickGenerator#interruptTickGeneration()
+     */
+    public void reprendreGenerateur() {
+        // on s'assure que le generateur est bien interrompu
+        interruptTickGeneration();
+        // on recréé un nouveau thread
+        internalThread = new Thread(this);
+        internalThread.start();
+        running =true;
+    }
+
     @Override
     public void run() {
         // boucle du thread

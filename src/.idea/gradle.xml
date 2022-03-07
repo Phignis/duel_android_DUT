@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../../../../../../etud/leruy/DeuxAnne/S3/Android/duel/src" />
-            <option value="$PROJECT_DIR$/../../../../../../../etud/leruy/DeuxAnne/S3/Android/duel/src/app" />
+            <option value="$PROJECT_DIR$/../../../../../../../../etud/bafoucras/cours/2A/P3/android/Duel_git/src" />
+            <option value="$PROJECT_DIR$/../../../../../../../../etud/bafoucras/cours/2A/P3/android/Duel_git/src/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
