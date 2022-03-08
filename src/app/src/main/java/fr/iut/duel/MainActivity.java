@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
         Button testrapide = findViewById(R.id.testRapide);
 
         nPartie.setOnClickListener(view -> {
-            Intent choixPerso = new Intent(MainActivity.this, Choixperso.class);
+            Intent choixPerso = new Intent(MainActivity.this, ChoixpersoActivity.class);
             startActivity(choixPerso);
         });
 
         if (GameManager.getInstance().getJoueur() != null) {
             continuer.setOnClickListener(view -> {
-                Intent choixNiv = new Intent(MainActivity.this, ChoixNiveau.class);
+                Intent choixNiv = new Intent(MainActivity.this, ChoixNiveauActivity.class);
                 startActivity(choixNiv);
             });
             continuer.setVisibility(View.VISIBLE);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         testrapide.setOnClickListener(view -> {
             Personnage p = new Paladin("Testeur");
             GameManager.getInstance().setJoueur(p);
-            Intent choixNiv = new Intent(MainActivity.this, ChoixNiveau.class);
+            Intent choixNiv = new Intent(MainActivity.this, ChoixNiveauActivity.class);
             startActivity(choixNiv);
         });
     }

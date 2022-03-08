@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Duel">
         <activity
-            android:name="fr.iut.duel.Choixperso"
+            android:name="fr.iut.duel.ChoixpersoActivity"
             android:exported="true" />
         <activity
-            android:name="fr.iut.duel.ChoixNiveau"
+            android:name="fr.iut.duel.ChoixNiveauActivity"
             android:exported="true" />
         <activity
-            android:name="fr.iut.duel.Duel"
+            android:name="fr.iut.duel.DuelActivity"
             android:exported="true" />
         <activity
             android:name="fr.iut.duel.MainActivity"
