@@ -62,6 +62,7 @@ public class CombatManager implements Observer {
             e.printStackTrace();
         }
         attaquer(attacker, defender); // l'attacker attaque en premier
+        attacker.waitFor(secondsToWaitByAction);
 
         // ici, notre ArrayBlockingQueue est full, il faudra donc attendre que l'action soit finit pour en refaire
 
@@ -71,6 +72,7 @@ public class CombatManager implements Observer {
             e.printStackTrace();
         }
         attaquer(defender, attacker); // le defender attaque en second
+        defender.waitFor(secondsToWaitByAction);
 
     }
 
