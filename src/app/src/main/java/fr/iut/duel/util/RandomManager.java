@@ -76,4 +76,16 @@ public class RandomManager {
 
         // return random.ints(minLimit, (maxLimit + 1)).findFirst().getAsInt();
     }
+
+    /**
+     * génère un boolean aléatoire. La probabilité d'obtenir false équivaut
+     * à 1 / nombre de valeurs différente de 0. Se référer aux bornes pour voir cette probabilité
+     * Si la borne minimale n'est pas spécifié, la borne minimale est 0
+     * @return un boolean pseudo aléatoire
+     * @see RandomManager#RandomManager(int)
+     * @see RandomManager#RandomManager(int, int)
+     */
+    public boolean generateBoolean() {
+        return this.generateRandom() != 0;
+    }
 }

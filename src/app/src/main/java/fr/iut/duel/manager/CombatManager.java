@@ -3,6 +3,7 @@ package fr.iut.duel.manager;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import fr.iut.duel.model.CharacterPlayable;
+import fr.iut.duel.util.RandomManager;
 import fr.iut.duel.util.pattern.observer.Observer;
 import fr.iut.duel.util.pattern.observer.Subject;
 
@@ -63,6 +64,9 @@ public class CombatManager implements Observer {
         }
         attaquer(attacker, defender); // l'attacker attaque en premier
         attacker.waitFor(secondsToWaitByAction);
+
+        // TODO faire le generateBoolean pour choisir aléatoirement entre soin et attaque
+        //if(new RandomManager(1).generateBoolean())
 
         // ici, notre ArrayBlockingQueue est full, il faudra donc attendre que l'action soit finit pour en refaire
 
