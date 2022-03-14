@@ -50,13 +50,13 @@ public abstract class UniqObservableSubject implements Subject{
 
     /**
      * Notifie, via la méthode update de Observer, tous les Observateurs abonnés à cette instance, via la méthode attacher
-     * @see Observer#update() 
+     * @see Observer#update(Subject)
      * @see UniqObservableSubject#subscribe(Observer)
      */
     @Override
     public void notifyObservers() {
         for(Observer toNotify : subscribers) {
-            toNotify.update();
+            toNotify.update(this);
         }
     }
 }

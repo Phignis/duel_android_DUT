@@ -7,6 +7,9 @@ import fr.iut.duel.util.pattern.observer.UniqObservableSubject;
  * Il génère des ticks à intervalle régulière, servant à cadencer la fréquence d'apparition d'une boucle temporelle
  */
 public class TickGenerator extends UniqObservableSubject implements Runnable {
+
+    private static TickGenerator _singleton;
+
     /**
      * Représente l'intervalle entre deux ticks généré par l'instance de la classe. Cette valeur est en milli-secondes
      * @see TickGenerator#TickGenerator(int)
@@ -34,7 +37,7 @@ public class TickGenerator extends UniqObservableSubject implements Runnable {
      * @see TickGenerator#intervalBetweenTicks
      *
      */
-    public TickGenerator(int intervalBetweenTicks) {
+    private TickGenerator(int intervalBetweenTicks) {
         this.intervalBetweenTicks = intervalBetweenTicks;
         this.running = true;
         this.internalThread = new Thread(this);
@@ -42,14 +45,23 @@ public class TickGenerator extends UniqObservableSubject implements Runnable {
     }
 
     /**
-     * Constructeur de GenerateurTick.
-     * Il lance en interne un nouveau thread (threadInterne), permettant de mettre en place les ticks, générés à intervalle régulière
-     * Par défaut, la valeur de l'intervalle entre chaque ticks est de 16ms, pour un jeu à 60Hz
-     * @see TickGenerator#internalThread
-     * @see TickGenerator#intervalBetweenTicks
+     * créé un TickGenerator avec une intervalle entre les ticks spécifié si pas encore créé, et retourne l'instance créée ou déjà existante.
+     * Attention! getInstance ne garentit pas d'obtenir une instance avec le nombre de tick voulu!
+     * @param intervalBetweenTicks intervalle entre chaque tick (ms) si l'instance n'était pas encore créé
+     * @return une instance de TickGenerator
      */
-    public TickGenerator() {
-        this(16);
+    public static TickGenerator getInstance(int intervalBetweenTicks) {
+        if(_singleton == null) _singleton = new TickGenerator(intervalBetweenTicks);
+        return _singleton;
+    }
+
+    /**
+     * créé un TickGenerator avec une intervalle entre les ticks de 16ms si pas encore créé, et retourne l'instance créée ou déjà existante.
+     * Attention! getInstance ne garentit pas d'obtenir une instance avec le nombre de tick voulu!
+     * @return une instance de TickGenerator
+     */
+    public static TickGenerator getInstance() {
+        return getInstance(16);
     }
 
     public int getIntervalBetweenTicks() {

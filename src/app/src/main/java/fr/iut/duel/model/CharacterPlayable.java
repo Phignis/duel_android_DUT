@@ -1,6 +1,11 @@
 package fr.iut.duel.model;
 
-public abstract class CharacterPlayable {
+import fr.iut.duel.clock.TickGenerator;
+import fr.iut.duel.util.pattern.observer.Observer;
+import fr.iut.duel.util.pattern.observer.Subject;
+import fr.iut.duel.util.pattern.observer.UniqObservableSubject;
+
+public abstract class CharacterPlayable extends UniqObservableSubject implements Observer {
 
     private String pseudo;
     private int vie;
@@ -8,6 +13,7 @@ public abstract class CharacterPlayable {
     private int attaque;
     private String description;
     private int image;
+    private long tickToWait;
 
     private TypeAttack typeAttack = TypeAttack.PHYSIQUE;
 
@@ -18,6 +24,7 @@ public abstract class CharacterPlayable {
         this.attaque = attaque;
         this.description = description;
         this.image = photo;
+        this.tickToWait = 0;
     }
 
     public String getPseudo() {
@@ -54,12 +61,12 @@ public abstract class CharacterPlayable {
     @Override
     public String toString() {
         return dial() + "\n" +
-                "\t pseudo :"+this.getPseudo()+"\n"+
-                "\t vie : "+vie+"\n"+
-                "\t def : "+def+"\n"+
-                "\t attaque : "+attaque+"\n"+
-                "\t type : "+this.getClass().getSimpleName()+"\n"+
-                "\t description : "+description;
+                "\t pseudo :" + this.getPseudo() + "\n"+
+                "\t vie : " + vie + "\n"+
+                "\t def : " + def + "\n"+
+                "\t attaque : " + attaque+"\n"+
+                "\t type : " + this.getClass().getSimpleName() + "\n"+
+                "\t description : " + description;
     }
 
     /**
@@ -67,7 +74,7 @@ public abstract class CharacterPlayable {
      * @return : le pseudo suivit d'un tab
      */
     public String dial() {
-        return this.getPseudo()+" : \t";
+        return this.getPseudo() + " : \t";
     }
 
     /**
@@ -89,8 +96,9 @@ public abstract class CharacterPlayable {
     /**
      * Utilise lorsque un personnage en attaque un autre
      * @param p : victime de l'attaque
-     * @deprecated
-     * @see CharacterPlayable#attack(CharacterPlayable)
+     * @deprecated préferer déléguer l'action d'enlever des pv a un manager
+     * @see CharacterPlayable#calculAttack(CharacterPlayable)
+     * @see fr.iut.duel.manager.CombatManager
      */
     public void Attaquer(CharacterPlayable p) {
         BaisseDeVie(this.getAttaque(), p);
@@ -98,15 +106,17 @@ public abstract class CharacterPlayable {
     }
 
     /**
-     * a implémenter, définit comment chaque personnage selon sa classe en attaque un autre
-     * @param target personnage victime de l'attaque
+     * permet de savoir combien de degats le CharacterPlayable inflige a un autre CharacterPlayable cible, selon la règle de force de son TypeAttack
+     * @param target CharacterPlayable subissant l'attaque
+     * @return le montent de dégats infligés
+     * @see TypeAttack
      */
-    public void attack(CharacterPlayable target) {
-        typeAttack.calculDamage(target.attaque, target.typeAttack);
+    public int calculAttack(CharacterPlayable target) {
+        return  typeAttack.calculAttack(this.attaque, target.typeAttack);
     }
 
     /**
-     * Fait une phrase pour dire que le personnage attaque
+     * Fait une phrase pour dire que le CharacterPlayable attaque
      * @param p
      */
     public void AttaquerParole(CharacterPlayable p) {
@@ -127,6 +137,7 @@ public abstract class CharacterPlayable {
         }
     }
 
+
     /**
      * A redefinir pour mettre la defense voulue
      */
@@ -134,5 +145,29 @@ public abstract class CharacterPlayable {
 
     public void reset() {
         System.out.println("je ne peux rien faire");
+    }
+
+    /**
+     * permet d'attendre un certain nombre de seconde, grâce au generateur de tick
+     * @param secondsToWait nombre de secondes à attendre
+     * @see TickGenerator
+     */
+    public void waitFor(long secondsToWait) {
+        tickToWait = secondsToWait * TickGenerator.getInstance().getIntervalBetweenTicks();
+        TickGenerator.getInstance().subscribe(this);
+    }
+
+    /**
+     * décrémente d'un tick le temps restant a attendre, et notifie ceux étant abonnés si jamais on a finis d'attendre
+     * @param notifier Subject notifiant l'Observer
+     */
+    @Override
+    public void update(Subject notifier) {
+        // si jamais on est notifié par le TickGenerator, alors on décrémente notre compteur interne, et on notifie si l'on arrive est à 0
+        --tickToWait;
+        if(tickToWait < 1) {
+            notifyObservers();
+            TickGenerator.getInstance().unsubscribe(this);
+        }
     }
 }
