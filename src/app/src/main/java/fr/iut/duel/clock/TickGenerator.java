@@ -91,6 +91,10 @@ public class TickGenerator extends UniqObservableSubject implements Runnable {
         running =true;
     }
 
+    /**
+     * Fonction effectuée par le thread interne à la classe permettant la mise en place du décompte de tick
+     * @see TickGenerator#internalThread
+     */
     @Override
     public void run() {
         // boucle du thread

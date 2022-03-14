@@ -28,6 +28,5 @@ public class CombatManager {
     // TODO voir https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ArrayBlockingQueue.html
     public void mancheExecution(CharacterPlayable attaquant, CharacterPlayable victime) {
         attaquer(attaquant, victime); // l'attaquant attaque en premier
-
     }
 }

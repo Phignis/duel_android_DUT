@@ -8,11 +8,6 @@ public class Paladin extends CharacterPlayable {
         super(pseudo, 200, 100, 80,"Gaillard toujours prêt à servir.\n200 de vie,100 de defense,20 d'attaque", R.drawable.paladin);
     }
 
-    @Override
-    public void attack(CharacterPlayable target) {
-
-    }
-
     /**
      * Parle lors de l'attaque
      * @param p : Le personnage adverse
