@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -73,7 +74,7 @@ public class DuelActivity extends AppCompatActivity {
         ProgressBar viePerso = findViewById(R.id.joueurVie);
         viePerso.setMax(GameManager.getInstance().getJoueur().getVie());
         viePerso.setMin(0);
-            // faut mettre des observable pour changer la vie
+        // faut mettre des observable pour changer la vie
 
         ProgressBar vieBot = findViewById(R.id.botVie);
         vieBot.setMax(GameManager.getInstance().getAdversaire().getVie());
@@ -84,40 +85,21 @@ public class DuelActivity extends AppCompatActivity {
         Button defendre = findViewById(R.id.def);
 
         attaquer.setOnClickListener(view -> {
-            deplacement(perso,bot);
-            GameManager.getInstance().getJoueur().Attaquer(GameManager.getInstance().getAdversaire());
-        });
-        defendre.setOnClickListener(view -> {
-            deplacement(bot,perso);
-            GameManager.getInstance().getJoueur().Defense();
+            deplacementJoueur(perso);
         });
     }
 
     // a mettre dans la boucle de jeux je crois
-    public void deplacement(ImageView bouge, ImageView attends){
-        Runnable r = new Runnable() {
+    public void deplacementJoueur(ImageView j){
+        ObjectAnimator.ofFloat(j,"translationY",  -400).setDuration(500).start();
+        new Handler().postDelayed(new Runnable()
+        {
             @Override
-            public void run() {
-                float coordoneDeplaceur[] = new float[2];
-                coordoneDeplaceur[1] = bouge.getY();
-                coordoneDeplaceur[0] = bouge.getX();
-                float coordoneattend[] = new float[2];
-                coordoneattend[1] = attends.getY();
-                coordoneattend[0] = attends.getX();
-
-                Log.d("deplacement", "X = "+coordoneattend[0]+" Y = "+coordoneattend[1]);
-                ObjectAnimator.ofFloat(bouge,"translationX",coordoneattend[0],coordoneattend[1]).setDuration(500).start();
-                try {
-                    sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                ObjectAnimator.ofFloat(bouge,"translationX",coordoneDeplaceur[0],coordoneDeplaceur[1]).setDuration(500).start();
-                Log.d("thread", "run: ");
+            public void run()
+            {
+                ObjectAnimator.ofFloat(j,"translationY",  0).setDuration(500).start();
             }
-        };
-
-        new Thread(r).start();
+        }, 500);
     }
 
 }
