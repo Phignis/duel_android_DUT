@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button nPartie = findViewById(R.id.nPartie);
         Button continuer = findViewById(R.id.continuer);
-        Button exit = findViewById(R.id.exit);
+        Button bouche = findViewById(R.id.bouche);
         Button testrapide = findViewById(R.id.testRapide);
 
         nPartie.setOnClickListener(view -> {
@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
             GameManager.getInstance().setJoueur(p);
             Intent choixNiv = new Intent(MainActivity.this, ChoixNiveauActivity.class);
             startActivity(choixNiv);
+        });
+
+        bouche.setOnClickListener(view ->{
+            Intent bouchetrou = new Intent(MainActivity.this, BoucheTrouActivity.class);
+            startActivity(bouchetrou);
         });
     }
 }

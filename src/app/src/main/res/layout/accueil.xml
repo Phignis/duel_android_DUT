@@ -27,17 +27,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/continuer"
-        app:layout_constraintBottom_toTopOf="@+id/exit"
+        app:layout_constraintBottom_toTopOf="@+id/bouche"
         app:layout_constraintEnd_toEndOf="@+id/nPartie"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/nPartie"
         app:layout_constraintTop_toBottomOf="@id/nPartie" />
 
     <Button
-        android:id="@+id/exit"
+        android:id="@+id/bouche"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/exit"
+        android:text="bouche"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/nPartie"
         app:layout_constraintStart_toStartOf="@+id/nPartie"
@@ -50,7 +50,7 @@
         android:text="TestRapide"
         app:layout_constraintEnd_toEndOf="@+id/nPartie"
         app:layout_constraintStart_toStartOf="@+id/nPartie"
-        app:layout_constraintTop_toBottomOf="@+id/exit" />
+        app:layout_constraintTop_toBottomOf="@+id/bouche" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

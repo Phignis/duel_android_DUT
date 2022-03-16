@@ -70,16 +70,18 @@ public class DuelActivity extends AppCompatActivity {
         ImageView bot = findViewById(R.id.botImage);
         bot.setImageResource(GameManager.getInstance().getAdversaire().getImage());
         //animation vue
+
         //des barres de vies
         ProgressBar viePerso = findViewById(R.id.joueurVie);
         viePerso.setMax(GameManager.getInstance().getJoueur().getVie());
         viePerso.setMin(0);
+        viePerso.setProgress(GameManager.getInstance().getJoueur().getVie());
         // faut mettre des observable pour changer la vie
 
         ProgressBar vieBot = findViewById(R.id.botVie);
-        vieBot.setMax(GameManager.getInstance().getAdversaire().getVie());
+        vieBot.setMax(GameManager.getInstance().getJoueur().getVie());
         vieBot.setMin(0);
-
+        vieBot.setProgress(GameManager.getInstance().getAdversaire().getVie());
         //différents button
         Button attaquer = findViewById(R.id.att);
         Button defendre = findViewById(R.id.def);
@@ -87,6 +89,7 @@ public class DuelActivity extends AppCompatActivity {
         attaquer.setOnClickListener(view -> {
             deplacementJoueur(perso);
         });
+
     }
 
     // a mettre dans la boucle de jeux je crois
