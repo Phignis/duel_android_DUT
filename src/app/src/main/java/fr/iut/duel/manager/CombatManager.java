@@ -1,8 +1,10 @@
 package fr.iut.duel.manager;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import fr.iut.duel.model.CharacterPlayable;
+import fr.iut.duel.util.Action;
 import fr.iut.duel.util.RandomManager;
 import fr.iut.duel.util.pattern.observer.Observer;
 import fr.iut.duel.util.pattern.observer.Subject;
@@ -49,41 +51,52 @@ public class CombatManager implements Observer {
         toAdd.subscribe(this);
     }
 
-    // TODO voir https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ArrayBlockingQueue.html
-
     /**
      * représente l'execution d'une manche complète, et attends x temps pour chaque action
-     * @param attacker CharacterPlayable effectuant l'attaque
-     * @param defender CharacterPlayable se défendant
+     * @param initiator CharacterPlayable initiant la manche
+     * @param implied CharacterPlayable se défendant
      */
-    public void mancheExecution(CharacterPlayable attacker, CharacterPlayable defender, long secondsToWaitByAction) {
-        try {
-            addToAct(attacker);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void mancheExecution(CharacterPlayable initiator, CharacterPlayable implied, long secondsToWaitByAction, Action actionInitiater) {
+        if(actionInitiater == Action.ATTAQUE) {
+            try {
+                addToAct(initiator);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            attaquer(initiator, implied); // l'initiator attaque en premier
+            initiator.waitFor(secondsToWaitByAction);
+        } else if(actionInitiater == Action.SOIN) {
+            initiator.Defense();
         }
-        attaquer(attacker, defender); // l'attacker attaque en premier
-        attacker.waitFor(secondsToWaitByAction);
 
-        // TODO faire le generateBoolean pour choisir aléatoirement entre soin et attaque
-        //if(new RandomManager(1).generateBoolean())
+        if(!new RandomManager(1).generateBoolean()) {
 
-        // ici, notre ArrayBlockingQueue est full, il faudra donc attendre que l'action soit finit pour en refaire
+            // ici, notre ArrayBlockingQueue est full, il faudra donc attendre que l'action soit finit pour en refaire
 
-        try {
-            addToAct(defender);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                addToAct(implied);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            attaquer(implied, initiator); // le implied attaque en second
+            implied.waitFor(secondsToWaitByAction);
+        } else {
+            implied.Defense();
         }
-        attaquer(defender, attacker); // le defender attaque en second
-        defender.waitFor(secondsToWaitByAction);
-
     }
 
+    /**
+     * permet d'enlever le CharacterPlayable en train d'effectuer l'action
+     * @param notifier Subject notifiant l'Observer
+     */
     @Override
     public void update(Subject notifier) {
         // ici, on se désabonne car notre CharacterPlayable a finit son action, et on l'enlève de la ArrayBlockingQueue
         notifier.unsubscribe(this);
-        charactersDoingAction.remove(notifier);
+        try {
+            charactersDoingAction.poll(10, TimeUnit.MICROSECONDS); // on enlève le CharacterPlayable de la liste bloquante, avec timeout si personne n'est présent
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
