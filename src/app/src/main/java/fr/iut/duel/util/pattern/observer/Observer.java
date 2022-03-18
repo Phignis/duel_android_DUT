@@ -11,6 +11,7 @@ public interface Observer {
     /**
      * a pour but d'effectuer une action précise, lorsque la notification du ou d'un des Sujets
      * auquel l'instance est abonné est envoyé.
+     * @param notifier Subject notifiant l'Observer
      */
-    void update();
+    void update(Subject notifier);
 }

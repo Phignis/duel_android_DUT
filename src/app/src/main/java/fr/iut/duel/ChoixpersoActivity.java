@@ -19,15 +19,15 @@ import com.example.duel.R;
 import java.util.Objects;
 
 import fr.iut.duel.manager.GameManager;
+import fr.iut.duel.model.CharacterPlayable;
 import fr.iut.duel.model.Chimiste;
 import fr.iut.duel.model.Magicien;
-import fr.iut.duel.model.Personnage;
 import fr.iut.duel.model.Paladin;
 import fr.iut.duel.model.Voleur;
 
 public class ChoixpersoActivity extends AppCompatActivity {
 
-    Personnage joueur;
+    CharacterPlayable joueur;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +74,7 @@ public class ChoixpersoActivity extends AppCompatActivity {
             }
         });
         /**
-         * Action du bouton pour afficher le Personnage paladin
+         * Action du bouton pour afficher le CharacterPlayable paladin
          * et le cree
          */
         paladin.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +91,7 @@ public class ChoixpersoActivity extends AppCompatActivity {
         });
 
         /**
-         * Action du bouton pour afficher le Personnage magicien
+         * Action du bouton pour afficher le CharacterPlayable magicien
          * et le cree
          */
         magicien.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +105,7 @@ public class ChoixpersoActivity extends AppCompatActivity {
         });
 
         /**
-         * Action du bouton pour afficher le Personnage chimiste
+         * Action du bouton pour afficher le CharacterPlayable chimiste
          * et le cree
          */
         chimiste.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +119,7 @@ public class ChoixpersoActivity extends AppCompatActivity {
         });
 
         /**
-         * Action du bouton pour afficher le Personnage voleur
+         * Action du bouton pour afficher le CharacterPlayable voleur
          * et le cree
          */
         voleur.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +141,7 @@ public class ChoixpersoActivity extends AppCompatActivity {
         GameManager.getInstance().setJoueur(joueur);
 
         Button confirmation = findViewById(R.id.confirmer);
-        confirmation.setOnClickListener(view ->{
+        confirmation.setOnClickListener(view -> {
             Intent choixNiv = new Intent(ChoixpersoActivity.this, ChoixNiveauActivity.class);
             startActivity(choixNiv);
         });

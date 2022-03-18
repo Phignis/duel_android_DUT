@@ -2,11 +2,9 @@ package fr.iut.duel.model;
 
 import com.example.duel.R;
 
-import java.util.Random;
-
 import fr.iut.duel.util.RandomManager;
 
-public class Voleur extends Personnage {
+public class Voleur extends CharacterPlayable {
 
     private int chance;
     private RandomManager generateurRandom;
@@ -36,7 +34,7 @@ public class Voleur extends Personnage {
      * @param p : Le personnage adverse
      */
     @Override
-    public void AttaquerParole(Personnage p) {
+    public void AttaquerParole(CharacterPlayable p) {
         int r = generateurRandom.generateRandom();
 
         if(r > chance) {

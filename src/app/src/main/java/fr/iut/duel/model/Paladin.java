@@ -2,7 +2,7 @@ package fr.iut.duel.model;
 
 import com.example.duel.R;
 
-public class Paladin extends Personnage {
+public class Paladin extends CharacterPlayable {
 
     public Paladin(String pseudo) {
         super(pseudo, 200, 100, 80,"Gaillard toujours prêt à servir.\n200 de vie,100 de defense,20 d'attaque", R.drawable.paladin);
@@ -13,7 +13,7 @@ public class Paladin extends Personnage {
      * @param p : Le personnage adverse
      */
     @Override
-    public void AttaquerParole(Personnage p) {
+    public void AttaquerParole(CharacterPlayable p) {
         System.out.println(dial()+"J'attaque avec toute ma force "+p.interpelation()+" !!!");
     }
 
