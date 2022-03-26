@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,7 +40,8 @@ public class ChoixNiveauActivity extends AppCompatActivity {
             startActivity(mnp);
         });
 
-        pseudo.setText(GameManager.getInstance().getJoueur().getPseudo());
+        Log.d("Pseudo", GameManager.getInstance().getJoueur().getPseudo());
+        //pseudo.setText();
 
         pseudo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -57,6 +59,7 @@ public class ChoixNiveauActivity extends AppCompatActivity {
                 GameManager.getInstance().getJoueur().setPseudo(pseudo.getText().toString());
             }
         });
+
     }
 
     /**

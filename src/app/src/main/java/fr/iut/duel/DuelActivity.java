@@ -81,7 +81,7 @@ public class DuelActivity extends AppCompatActivity {
         // faut mettre des observable pour changer la vie
 
         ProgressBar vieBot = findViewById(R.id.botVie);
-        vieBot.setMax(GameManager.getInstance().getJoueur().getVie());
+        vieBot.setMax(GameManager.getInstance().getAdversaire().getVie());
         vieBot.setMin(0);
         vieBot.setProgress(GameManager.getInstance().getAdversaire().getVie());
         //différents button
@@ -90,10 +90,14 @@ public class DuelActivity extends AppCompatActivity {
 
         CombatManager CbM = new CombatManager();
         attaquer.setOnClickListener(view -> {
+            Log.d("Affichage j", GameManager.getInstance().getJoueur().toString());
             CbM.mancheExecution(GameManager.getInstance().getJoueur(),GameManager.getInstance().getAdversaire(),5,Action.ATTAQUE);
             //deplacementJoueur(perso);
         });
 
+        defendre.setOnClickListener(view -> {
+            CbM.mancheExecution(GameManager.getInstance().getJoueur(),GameManager.getInstance().getAdversaire(),5,Action.SOIN);
+        });
 
 
     }

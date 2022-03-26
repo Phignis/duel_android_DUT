@@ -1,5 +1,6 @@
 package fr.iut.duel.util.pattern.observer;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,6 +19,10 @@ public abstract class UniqObservableSubject implements Subject{
      * @see UniqObservableSubject#unsubscribe(Observer) 
      */
     private List<Observer> subscribers;
+
+    public UniqObservableSubject(){
+        subscribers = new LinkedList<>();
+    }
 
     /**
      * Abonne un Observer à cette instance de UniqObservableSubject, pour qu'il reçoive les notifications,

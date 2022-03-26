@@ -113,7 +113,7 @@ public class TickGenerator extends UniqObservableSubject implements Runnable {
         while(running) {
             try {
                 Thread.sleep(intervalBetweenTicks);
-                super.notify();
+                super.notifyObservers();
             } catch (InterruptedException e) {
                 break; // thread interrompue durant le sleep
             }
