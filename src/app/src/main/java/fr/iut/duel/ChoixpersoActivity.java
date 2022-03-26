@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.example.duel.R;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Objects;
 
 import fr.iut.duel.manager.GameManager;
@@ -140,6 +142,8 @@ public class ChoixpersoActivity extends AppCompatActivity {
     public void confirmer(){
         GameManager.getInstance().setJoueur(joueur);
 
+        save(); // on save le perso
+
         Button confirmation = findViewById(R.id.confirmer);
         confirmation.setOnClickListener(view -> {
             Intent choixNiv = new Intent(ChoixpersoActivity.this, ChoixNiveauActivity.class);
@@ -204,5 +208,18 @@ public class ChoixpersoActivity extends AppCompatActivity {
         // insert un text demandant choisir perso
         confirmation.setText(textButton);
         return false;
+    }
+
+    public void save(){
+        FileOutputStream outputStream= null;
+        try {
+            outputStream = openFileOutput("monSave",MODE_PRIVATE);
+            String audio_name=GameManager.getInstance().getJoueur().getClass().getName()+' '+GameManager.getInstance().getJoueur().getPseudo();
+            outputStream.write(audio_name.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

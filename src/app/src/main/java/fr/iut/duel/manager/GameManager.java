@@ -35,4 +35,12 @@ public class GameManager {
     public int getNiveauReussit() {
         return niveauReussit;
     }
+
+    public void save(){
+
+    }
+
+    public void read(){
+
+    }
 }

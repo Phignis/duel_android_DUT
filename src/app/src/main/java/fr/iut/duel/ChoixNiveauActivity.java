@@ -40,8 +40,7 @@ public class ChoixNiveauActivity extends AppCompatActivity {
             startActivity(mnp);
         });
 
-        Log.d("Pseudo", GameManager.getInstance().getJoueur().getPseudo());
-        //pseudo.setText();
+        pseudo.setText(GameManager.getInstance().getJoueur().getPseudo());
 
         pseudo.addTextChangedListener(new TextWatcher() {
             @Override
