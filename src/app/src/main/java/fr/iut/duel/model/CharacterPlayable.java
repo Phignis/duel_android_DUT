@@ -1,5 +1,7 @@
 package fr.iut.duel.model;
 
+import androidx.lifecycle.MutableLiveData;
+
 import fr.iut.duel.clock.TickGenerator;
 import fr.iut.duel.util.pattern.observer.Observer;
 import fr.iut.duel.util.pattern.observer.Subject;
