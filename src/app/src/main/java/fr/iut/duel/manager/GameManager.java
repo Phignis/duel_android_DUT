@@ -1,11 +1,11 @@
 package fr.iut.duel.manager;
 
-import fr.iut.duel.model.Personnage;
+import fr.iut.duel.model.CharacterPlayable;
 
 public class GameManager {
     private static GameManager instance;
-    private Personnage joueur;
-    private Personnage adversaire;
+    private CharacterPlayable joueur;
+    private CharacterPlayable adversaire;
     private int niveauReussit;
 
     public static GameManager getInstance() {
@@ -15,17 +15,17 @@ public class GameManager {
         return instance;
     }
 
-    public void setJoueur(Personnage joueur) {
+    public void setJoueur(CharacterPlayable joueur) {
         this.joueur = joueur;
     }
-    public Personnage getJoueur() {
+    public CharacterPlayable getJoueur() {
         return joueur;
     }
 
-    public void setAdversaire(Personnage adversaire) {
+    public void setAdversaire(CharacterPlayable adversaire) {
         this.adversaire = adversaire;
     }
-    public Personnage getAdversaire() {
+    public CharacterPlayable getAdversaire() {
         return adversaire;
     }
 

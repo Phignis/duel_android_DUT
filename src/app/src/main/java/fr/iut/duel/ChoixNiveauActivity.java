@@ -14,7 +14,7 @@ import com.example.duel.R;
 import fr.iut.duel.manager.GameManager;
 import fr.iut.duel.model.Chimiste;
 import fr.iut.duel.model.Paladin;
-import fr.iut.duel.model.Personnage;
+import fr.iut.duel.model.CharacterPlayable;
 import fr.iut.duel.model.Voleur;
 
 public class ChoixNiveauActivity extends AppCompatActivity {
@@ -64,7 +64,7 @@ public class ChoixNiveauActivity extends AppCompatActivity {
      * @param number = niveau voulu
      */
     public void demarrerNiv(int number){
-        Personnage adv;
+        CharacterPlayable adv;
         Intent niv;
         switch (number){
             case 1:

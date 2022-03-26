@@ -48,7 +48,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import fr.iut.duel.manager.CombatManager;
 import fr.iut.duel.manager.GameManager;
+import fr.iut.duel.util.Action;
 
 public class DuelActivity extends AppCompatActivity {
     @SuppressLint("NewApi")
@@ -86,9 +88,13 @@ public class DuelActivity extends AppCompatActivity {
         Button attaquer = findViewById(R.id.att);
         Button defendre = findViewById(R.id.def);
 
+        CombatManager CbM = new CombatManager();
         attaquer.setOnClickListener(view -> {
-            deplacementJoueur(perso);
+            CbM.mancheExecution(GameManager.getInstance().getJoueur(),GameManager.getInstance().getAdversaire(),5,Action.ATTAQUE);
+            //deplacementJoueur(perso);
         });
+
+
 
     }
 

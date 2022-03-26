@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:text="Pseudo" />
 
-
         <ImageView
             android:id="@+id/perso"
             android:layout_width="match_parent"
@@ -73,9 +72,6 @@
             android:id="@+id/confirmer"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:width="100dp"
             android:text="" />
 
     </LinearLayout>
