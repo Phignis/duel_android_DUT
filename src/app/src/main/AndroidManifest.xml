@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.duel">
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,16 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Duel">
         <activity
-            android:name="fr.iut.duel.ChoixpersoActivity"
+            android:name="fr.iut.duel.Activity.ChoixpersoActivity"
             android:exported="true" />
         <activity
-            android:name="fr.iut.duel.ChoixNiveauActivity"
+            android:name="fr.iut.duel.Activity.ChoixNiveauActivity"
             android:exported="true" />
         <activity
-            android:name="fr.iut.duel.DuelActivity"
+            android:name="fr.iut.duel.Activity.DuelActivity"
             android:exported="true" />
         <activity
-            android:name="fr.iut.duel.MainActivity"
+            android:name="fr.iut.duel.Activity.MainActivity"
             android:configChanges="orientation"
             android:exported="true">
             <intent-filter>
@@ -29,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fr.iut.duel.BoucheTrouActivity"
+            android:name="fr.iut.duel.Activity.BoucheTrouActivity"
             android:exported="true" />
     </application>
 

@@ -1,4 +1,4 @@
-package fr.iut.duel;
+package fr.iut.duel.Activity;
 
 import static java.lang.Thread.sleep;
 
@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -48,7 +49,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import fr.iut.duel.manager.CombatManager;
 import fr.iut.duel.manager.GameManager;
+import fr.iut.duel.util.Action;
 
 public class DuelActivity extends AppCompatActivity {
     @SuppressLint("NewApi")
@@ -73,22 +76,35 @@ public class DuelActivity extends AppCompatActivity {
 
         //des barres de vies
         ProgressBar viePerso = findViewById(R.id.joueurVie);
+        viePerso.getProgressDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
         viePerso.setMax(GameManager.getInstance().getJoueur().getVie());
         viePerso.setMin(0);
         viePerso.setProgress(GameManager.getInstance().getJoueur().getVie());
         // faut mettre des observable pour changer la vie
 
         ProgressBar vieBot = findViewById(R.id.botVie);
-        vieBot.setMax(GameManager.getInstance().getJoueur().getVie());
+        vieBot.getProgressDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+        vieBot.setMax(GameManager.getInstance().getAdversaire().getVie());
         vieBot.setMin(0);
         vieBot.setProgress(GameManager.getInstance().getAdversaire().getVie());
         //différents button
         Button attaquer = findViewById(R.id.att);
         Button defendre = findViewById(R.id.def);
 
+        CombatManager CbM = new CombatManager();
         attaquer.setOnClickListener(view -> {
+            Log.d("Affichage j", GameManager.getInstance().getJoueur().toString());
+            CbM.mancheExecution(GameManager.getInstance().getJoueur(),GameManager.getInstance().getAdversaire(),5,Action.ATTAQUE);
             deplacementJoueur(perso);
+            vieBot.setProgress(GameManager.getInstance().getAdversaire().getVie());
+            Log.d("Affichage a", GameManager.getInstance().getAdversaire().toString());
         });
+
+        defendre.setOnClickListener(view -> {
+            CbM.mancheExecution(GameManager.getInstance().getJoueur(),GameManager.getInstance().getAdversaire(),5,Action.SOIN);
+            viePerso.setProgress(GameManager.getInstance().getAdversaire().getVie());
+        });
+
 
     }
 
