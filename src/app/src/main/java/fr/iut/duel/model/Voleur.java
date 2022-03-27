@@ -71,4 +71,13 @@ public class Voleur extends CharacterPlayable {
     public void reset() {
         this.setVie(100);
     }
+  
+   @Override
+    public int calculAttack(CharacterPlayable target) {
+        if(generateurRandom.generateRandom() > chance && getVie() < 100) {
+            setVie(getVie() + (getVie() + 20) % 100);
+        } // sinon il rate l'attaque
+        return super.calculAttack(target);
+    }
+
 }
