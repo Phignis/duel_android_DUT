@@ -180,7 +180,7 @@ public class ChoixpersoActivity extends AppCompatActivity {
      * @return vrais si choisit, faux si pas choisit
      */
     public boolean jouerRenseigne(){
-        if (Objects.isNull(joueur)){return false;}else{return true;}
+        return joueur != null;
     }
 
     /**
