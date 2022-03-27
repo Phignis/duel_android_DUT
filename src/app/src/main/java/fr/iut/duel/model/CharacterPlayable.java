@@ -19,7 +19,7 @@ public abstract class CharacterPlayable extends UniqObservableSubject implements
 
     private TypeAttack typeAttack = TypeAttack.PHYSIQUE;
 
-    public CharacterPlayable(String pseudo, int vie, int def, int attaque, String description, int photo) {
+    public CharacterPlayable(String pseudo, int vie, int def, int attaque, String description, int photo, TypeAttack typeAttack) {
         this.pseudo = pseudo;
         this.vie = vie;
         this.def = def;
@@ -27,6 +27,7 @@ public abstract class CharacterPlayable extends UniqObservableSubject implements
         this.description = description;
         this.image = photo;
         this.tickToWait = 0;
+        this.typeAttack = typeAttack;
     }
 
     public String getPseudo() {

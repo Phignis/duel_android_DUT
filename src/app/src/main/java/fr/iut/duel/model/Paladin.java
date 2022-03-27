@@ -5,7 +5,7 @@ import com.example.duel.R;
 public class Paladin extends CharacterPlayable {
 
     public Paladin(String pseudo) {
-        super(pseudo, 200, 100, 80,"Gaillard toujours prêt à servir.\n200 de vie,100 de defense,20 d'attaque", R.drawable.paladin);
+        super(pseudo, 200, 100, 80,"Gaillard toujours prêt à servir.\n200 de vie,100 de defense,20 d'attaque", R.drawable.paladin, TypeAttack.PHYSIQUE);
     }
 
     /**

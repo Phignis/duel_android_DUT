@@ -11,7 +11,7 @@ public class Voleur extends CharacterPlayable {
 
     public Voleur(String pseudo, int minRandomLimit, int maxRandomLimit, int chance) {
         super(pseudo, 100, 20, 80,
-                "Un vil parmis les vils.\n100 de vie,20 de defense,50 d'attaque", R.drawable.voleur);
+                "Un vil parmis les vils.\n100 de vie,20 de defense,50 d'attaque", R.drawable.voleur, TypeAttack.VICIEUX);
         this.chance = chance;
         generateurRandom = new RandomManager(minRandomLimit, maxRandomLimit);
     }
