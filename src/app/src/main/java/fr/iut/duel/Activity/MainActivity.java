@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         String [] vP = null;
         try {
             FileInputStream inputStream=openFileInput("monSave");
+            //Log.d("inputStream", String.valueOf(inputStream));
             StringBuilder stringb= new StringBuilder();
             int content;
             while ((content=inputStream.read())!=-1){
